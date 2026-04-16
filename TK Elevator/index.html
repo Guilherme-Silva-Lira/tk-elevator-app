@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>TK Elevator App</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+/* LOGIN */
+#login {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    background: #1e293b;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    width: 280px;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #7c3aed;
+    color: white;
+    cursor: pointer;
+}
+
+/* APP */
+#app {
+    display: none;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #1e293b;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.sidebar h3 {
+    margin-bottom: 20px;
+}
+
+.sidebar button {
+    width: 100%;
+    margin: 5px 0;
+    background: #334155;
+}
+
+.sidebar button:hover {
+    background: #7c3aed;
+}
+
+/* HEADER */
+.topbar {
+    margin-left: 220px;
+    padding: 15px;
+    background: #1e293b;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* CONTENT */
+.content {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+/* CARDS */
+.card {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* STATUS */
+.green { color: #22c55e; }
+.yellow { color: #facc15; }
+.red { color: #ef4444; }
+
+/* BARRA */
+.bar {
+    height: 12px;
+    background: #2563eb;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.hidden { display: none; }
+</style>
+
+<script>
+function entrar() {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("app").style.display = "block";
+}
+
+function showScreen(screen) {
+    let screens = ["dashboard","monitoramento","alertas","manutencao","relatorios"];
+    screens.forEach(s => document.getElementById(s).classList.add("hidden"));
+    document.getElementById(screen).classList.remove("hidden");
+}
+</script>
+
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+    <div class="login-box">
+        <h2>TK Elevator</h2>
+        <input placeholder="Usuário">
+        <input type="password" placeholder="Senha">
+        <button onclick="entrar()">Entrar</button>
+    </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+<div class="sidebar">
+    <h3>🚀 TK System</h3>
+    <button onclick="showScreen('dashboard')">📊 Dashboard</button>
+    <button onclick="showScreen('monitoramento')">🛰 Monitoramento</button>
+    <button onclick="showScreen('alertas')">🚨 Alertas</button>
+    <button onclick="showScreen('manutencao')">🔧 Manutenção</button>
+    <button onclick="showScreen('relatorios')">📈 Relatórios</button>
+</div>
+
+<div class="topbar">
+    <div>Usuário: Admin</div>
+    <div>16/04/2026</div>
+</div>
+
+<div class="content">
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+    <h2>📊 Dashboard</h2>
+
+    <div class="grid">
+        <div class="card green">Elevadores OK: 22</div>
+        <div class="card yellow">Alertas: 3</div>
+        <div class="card red">Falhas: 1</div>
+    </div>
+
+    <div class="card">
+        <h3>Falhas na Semana</h3>
+        Segunda<div class="bar" style="width:40%"></div>
+        Terça<div class="bar" style="width:70%"></div>
+        Quarta<div class="bar" style="width:30%"></div>
+        Quinta<div class="bar" style="width:80%"></div>
+    </div>
+</div>
+
+<!-- MONITORAMENTO -->
+<div id="monitoramento" class="hidden">
+    <h2>🛰 Monitoramento</h2>
+
+    <div class="card green">Elevador 01 - Normal</div>
+    <div class="card yellow">Elevador 02 - Atenção</div>
+    <div class="card red">Elevador 03 - Falha</div>
+</div>
+
+<!-- ALERTAS -->
+<div id="alertas" class="hidden">
+    <h2>🚨 Alertas</h2>
+
+    <div class="card red">Motor com falha crítica</div>
+    <div class="card yellow">Vibração fora do padrão</div>
+</div>
+
+<!-- MANUTENÇÃO -->
+<div id="manutencao" class="hidden">
+    <h2>🔧 Manutenção</h2>
+
+    <div class="card">Preventiva - Em andamento</div>
+    <div class="card">Corretiva - Pendente</div>
+</div>
+
+<!-- RELATÓRIOS -->
+<div id="relatorios" class="hidden">
+    <h2>📈 Relatórios</h2>
+
+    <div class="grid">
+        <div class="card">MTBF: 120h</div>
+        <div class="card">MTTR: 2h</div>
+    </div>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
